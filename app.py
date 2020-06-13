@@ -1,8 +1,7 @@
-import flask
-from flask import render_template, abort
-from flask import jsonify
-from flask import request
-app = flask.Flask(__name__)
+from flask import Flask
+from flask import render_template, request, jsonify
+
+app = Flask(__name__)
 
 products = [
     {'id':'1', 'name': 'Bags of Rice', 'price': 20000, 'in-stock': 'yes'},
@@ -10,9 +9,9 @@ products = [
     {'id':'3', 'name': 'Shirt', 'price': 2500, 'in-stock': 'yes'}
 ]
 
-@app.route('/', methods=['GET'])
-def home():
-    return render_template('index.html')
+#@app.route('/', methods=['GET'])
+#def home():
+    #return render_template('index.html')
 
 @app.route('/products/product', methods=['GET'])
 def getAllprod():
@@ -51,4 +50,4 @@ def deleteprod(productID):
     products.remove(fm[0])
     return jsonify({ 'response':'success'})
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)
